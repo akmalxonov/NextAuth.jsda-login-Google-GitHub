@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 const LoginComp = () => {
   const signInWidthGitHub = () => {
     signIn("github", {
