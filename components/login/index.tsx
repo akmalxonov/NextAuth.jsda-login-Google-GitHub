@@ -14,12 +14,13 @@ const LoginComp = () => {
       callbackUrl: "/dashboard",
     });
   };
-  async function doCredentialLogin(formData: FormData) {
+  async function CredentialLogin(formData: FormData) {
     try {
       const res = await signIn("credentials", {
         email: formData.get("email"),
         password: formData.get("password"),
-        redirect: false,
+        redirect: true,
+         callbackUrl: "/dashboard"
       });
       return res;
     } catch (err) {
@@ -46,14 +47,8 @@ const LoginComp = () => {
             onSubmit={async (e) => {
               e.preventDefault();
               const formData = new FormData(e.currentTarget);
-              const res = await doCredentialLogin(formData);
+              const res = await CredentialLogin(formData);
               console.log("Login result:", res);
-
-              if (res?.ok) {
-                window.location.href = "/dashboard";
-              } else {
-                alert("Login failed");
-              }
             }}
             className="space-y-6"
           >
